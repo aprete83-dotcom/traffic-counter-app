@@ -4,21 +4,59 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Traffic Counter App</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <h1>Traffic Counter App</h1>
+  <header>
+    <h1>Traffic Counter App</h1>
+    <p>Browser-based pedestrian and vehicle counting dashboard</p>
+  </header>
 
-  <p>
-    This project will detect and count pedestrians and vehicles from video footage.
-  </p>
+  <main>
+    <section class="card">
+      <h2>Project Overview</h2>
+      <p>
+        This web app is being developed to detect and count pedestrians and vehicles
+        from video footage. The goal is to create a simple real-time dashboard that
+        can support traffic analysis, facility planning, and space usage decisions.
+      </p>
+    </section>
 
-  <h2>Live Dashboard</h2>
+    <section class="card">
+      <h2>Live Dashboard</h2>
 
-  <p>Pedestrians counted: <strong id="people-count">0</strong></p>
-  <p>Vehicles counted: <strong id="vehicle-count">0</strong></p>
+      <div class="dashboard">
+        <div class="counter-box">
+          <h3>Pedestrians</h3>
+          <div class="counter-number" id="people-count">0</div>
+        </div>
 
-  <p>
-    Project status: basic webpage created. Detection and counting system will be added next.
-  </p>
+        <div class="counter-box">
+          <h3>Vehicles</h3>
+          <div class="counter-number" id="vehicle-count">0</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Test Controls</h2>
+      <p>
+        These buttons simulate the counting system. Later, they will be replaced by
+        automatic detection from video.
+      </p>
+
+      <button onclick="simulatePerson()">Add Pedestrian</button>
+      <button onclick="simulateVehicle()">Add Vehicle</button>
+      <button onclick="resetCounts()">Reset</button>
+    </section>
+
+    <section class="card">
+      <h2>System Status</h2>
+      <p>Status: <span class="status">Dashboard prototype active</span></p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
