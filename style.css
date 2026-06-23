@@ -65,3 +65,14 @@ button:hover {
   font-weight: bold;
   color: #2563eb;
 }
+.video-box {
+  background: #111827;
+  color: #d1d5db;
+  height: 320px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px dashed #4b5563;
+  text-align: center;
+}
