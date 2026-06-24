@@ -1,19 +1,12 @@
 let peopleCount = 0;
 let vehicleCount = 0;
+let model = null;
+
+const vehicleTypes = ["car", "truck", "bus", "motorcycle", "bicycle"];
 
 function updateDashboard() {
   document.getElementById("people-count").textContent = peopleCount;
   document.getElementById("vehicle-count").textContent = vehicleCount;
-}
-
-function simulatePerson() {
-  peopleCount++;
-  updateDashboard();
-}
-
-function simulateVehicle() {
-  vehicleCount++;
-  updateDashboard();
 }
 
 function resetCounts() {
@@ -21,28 +14,78 @@ function resetCounts() {
   vehicleCount = 0;
   updateDashboard();
 }
+
+async function loadModel() {
+  const status = document.querySelector(".status");
+  status.textContent = "Loading detection model...";
+
+  model = await cocoSsd.load();
+
+  status.textContent = "Detection model loaded. Play the video to start detection.";
+}
+
 function setupCanvas() {
+  const video = document.getElementById("video");
+  const canvas = document.getElementById("canvas");
+
+  canvas.width = video.clientWidth;
+  canvas.height = video.clientHeight;
+}
+
+async function detectObjects() {
   const video = document.getElementById("video");
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
 
-  canvas.width = video.clientWidth;
-  canvas.height = video.clientHeight;
+  setupCanvas();
 
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  if (model && !video.paused && !video.ended) {
+    const predictions = await model.detect(video);
 
-  // Test counting line
-  ctx.beginPath();
-  ctx.moveTo(0, canvas.height * 0.65);
-  ctx.lineTo(canvas.width, canvas.height * 0.65);
-  ctx.lineWidth = 4;
-  ctx.strokeStyle = "red";
-  ctx.stroke();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  ctx.font = "18px Arial";
-  ctx.fillStyle = "red";
-  ctx.fillText("Counting Line", 20, canvas.height * 0.65 - 10);
+    // Draw counting line
+    ctx.beginPath();
+    ctx.moveTo(0, canvas.height * 0.65);
+    ctx.lineTo(canvas.width, canvas.height * 0.65);
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = "red";
+    ctx.stroke();
+
+    ctx.font = "18px Arial";
+    ctx.fillStyle = "red";
+    ctx.fillText("Counting Line", 20, canvas.height * 0.65 - 10);
+
+    predictions.forEach(prediction => {
+      const objectName = prediction.class;
+
+      if (objectName === "person" || vehicleTypes.includes(objectName)) {
+        const [x, y, width, height] = prediction.bbox;
+
+        ctx.beginPath();
+        ctx.rect(x, y, width, height);
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = objectName === "person" ? "lime" : "yellow";
+        ctx.stroke();
+
+        ctx.fillStyle = objectName === "person" ? "lime" : "yellow";
+        ctx.font = "16px Arial";
+        ctx.fillText(
+          `${objectName} ${(prediction.score * 100).toFixed(0)}%`,
+          x,
+          y > 20 ? y - 5 : y + 20
+        );
+      }
+    });
+  }
+
+  requestAnimationFrame(detectObjects);
 }
 
-window.addEventListener("load", setupCanvas);
+window.addEventListener("load", async () => {
+  setupCanvas();
+  await loadModel();
+  detectObjects();
+});
+
 window.addEventListener("resize", setupCanvas);
