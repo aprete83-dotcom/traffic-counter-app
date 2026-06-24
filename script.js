@@ -57,6 +57,9 @@ ctx.fillStyle = "red";
 ctx.fillText("Counting Line", canvas.width * 0.70 - 120, 30);
 
     predictions.forEach(prediction => {
+      if (prediction.score < 0.45) {
+  return;
+}
       const objectName = prediction.class;
 
       if (objectName === "person" || vehicleTypes.includes(objectName)) {
