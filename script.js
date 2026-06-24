@@ -46,15 +46,15 @@ async function detectObjects() {
 
     // Draw counting line
     ctx.beginPath();
-    ctx.moveTo(0, canvas.height * 0.65);
-    ctx.lineTo(canvas.width, canvas.height * 0.65);
-    ctx.lineWidth = 4;
-    ctx.strokeStyle = "red";
-    ctx.stroke();
+ctx.moveTo(canvas.width * 0.70, 0);
+ctx.lineTo(canvas.width * 0.70, canvas.height);
+ctx.lineWidth = 4;
+ctx.strokeStyle = "red";
+ctx.stroke();
 
-    ctx.font = "18px Arial";
-    ctx.fillStyle = "red";
-    ctx.fillText("Counting Line", 20, canvas.height * 0.65 - 10);
+ctx.font = "18px Arial";
+ctx.fillStyle = "red";
+ctx.fillText("Counting Line", canvas.width * 0.70 - 120, 30);
 
     predictions.forEach(prediction => {
       const objectName = prediction.class;
