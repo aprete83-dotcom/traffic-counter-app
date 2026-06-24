@@ -57,12 +57,12 @@ ctx.fillStyle = "red";
 ctx.fillText("Counting Line", canvas.width * 0.70 - 120, 30);
 
     predictions.forEach(prediction => {
-      if (prediction.score < 0.70) {
+      if (prediction.score < 0.10) {
   return;
 }
       const objectName = prediction.class;
 
-      if (objectName === "person" || vehicleTypes.includes(objectName)) {
+      if (vehicleTypes.includes(objectName)) {
         const [x, y, width, height] = prediction.bbox;
 
         ctx.beginPath();
@@ -71,7 +71,7 @@ ctx.fillText("Counting Line", canvas.width * 0.70 - 120, 30);
         ctx.strokeStyle = objectName === "person" ? "lime" : "yellow";
         ctx.stroke();
 
-        ctx.fillStyle = objectName === "person" ? "lime" : "yellow";
+        ctx.fillStyle = objectName === "yellow";
         ctx.font = "16px Arial";
         ctx.fillText(
           `${objectName} ${(prediction.score * 100).toFixed(0)}%`,
