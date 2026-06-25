@@ -10,7 +10,6 @@ const confidenceThreshold = 0.10;
 const linePosition = 0.70; // 70% across the video
 
 function updateDashboard() {
-  document.getElementById("people-count").textContent = peopleCount;
   document.getElementById("vehicle-count").textContent = vehicleCount;
 }
 
