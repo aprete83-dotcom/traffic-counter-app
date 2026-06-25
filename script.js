@@ -67,8 +67,17 @@ ctx.fillText("Counting Line", canvas.width * 0.70 - 120, 30);
       if (vehicleTypes.includes(objectName)) {
         const [x, y, width, height] = prediction.bbox;
 
+// Scale detection box from real video size to canvas size
+const scaleX = canvas.width / video.videoWidth;
+const scaleY = canvas.height / video.videoHeight;
+
+const drawX = x * scaleX;
+const drawY = y * scaleY;
+const drawWidth = width * scaleX;
+const drawHeight = height * scaleY;
+
         ctx.beginPath();
-        ctx.rect(x, y, width, height);
+        ctx.rect(drawX, drawY, drawWidth, drawHeight);
         ctx.lineWidth = 3;
         ctx.strokeStyle = objectName === "person" ? "lime" : "yellow";
         ctx.stroke();
@@ -76,10 +85,10 @@ ctx.fillText("Counting Line", canvas.width * 0.70 - 120, 30);
         ctx.fillStyle = objectName === "yellow";
         ctx.font = "16px Arial";
         ctx.fillText(
-          `${objectName} ${(prediction.score * 100).toFixed(0)}%`,
-          x,
-          y > 20 ? y - 5 : y + 20
-        );
+  `${objectName} ${(prediction.score * 100).toFixed(0)}%`,
+  drawX,
+  drawY > 20 ? drawY - 5 : drawY + 20
+);
       }
     });
   }
