@@ -14,15 +14,6 @@ function updateDashboard() {
   document.getElementById("vehicle-count").textContent = vehicleCount;
 }
 
-function simulatePerson() {
-  peopleCount++;
-  updateDashboard();
-}
-
-function simulateVehicle() {
-  vehicleCount++;
-  updateDashboard();
-}
 
 function resetCounts() {
   peopleCount = 0;
