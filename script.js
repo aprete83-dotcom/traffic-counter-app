@@ -19,7 +19,9 @@ async function loadModel() {
   const status = document.querySelector(".status");
   status.textContent = "Loading detection model...";
 
-  model = await cocoSsd.load();
+  model = await cocoSsd.load({
+  base: "mobilenet_v2"
+});
 
   status.textContent = "Detection model loaded. Play the video to start detection.";
 }
