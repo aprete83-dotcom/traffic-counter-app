@@ -75,7 +75,7 @@ function findClosestVehicle(centerX, centerY) {
     const dy = centerY - vehicle.centerY;
     const distance = Math.sqrt(dx * dx + dy * dy);
 
-    if (distance < closestDistance && distance < 120) {
+    if (distance < closestDistance && distance < 60) {
       closestDistance = distance;
       closestVehicle = vehicle;
     }
