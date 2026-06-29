@@ -3,69 +3,195 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Traffic Counter App</title>
+  <title>Webcam Traffic Counter Dashboard | Achille Prete</title>
+  <meta name="description" content="Browser-based traffic counter dashboard that detects and counts vehicles from video input using JavaScript and computer vision.">
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <header>
-    <h1>Traffic Counter App</h1>
-    <p>Browser-based pedestrian and vehicle counting dashboard</p>
+
+  <!-- Header -->
+  <header class="project-header">
+    <div class="container">
+      <p class="project-label">Computer Vision • JavaScript • GitHub Pages</p>
+
+      <h1>Webcam Traffic Counter Dashboard</h1>
+
+      <p class="project-intro">
+        A browser-based prototype that detects and counts vehicles from video input,
+        displaying live counts and visual tracking overlays for traffic analysis and operational decision-making.
+      </p>
+
+      <div class="header-actions">
+        <a href="https://aprete83-dotcom.github.io/achilleprete-portfolio/" class="btn btn-secondary">
+          ← Back to Portfolio
+        </a>
+
+        <a href="https://github.com/aprete83-dotcom/traffic-counter-app" class="btn btn-secondary" target="_blank" rel="noopener">
+          View Code
+        </a>
+      </div>
+    </div>
   </header>
 
-  <main>
+  <!-- Main Content -->
+  <main class="container">
+
+    <!-- Project Overview -->
     <section class="card">
       <h2>Project Overview</h2>
-      <p>
-        This web app is being developed to detect and count pedestrians and vehicles
-        from video footage. The goal is to create a simple real-time dashboard that
-        can support traffic analysis, facility planning, and space usage decisions.
-      </p>
-    </section>
 
-    <section class="card">
-      <h2>Video Feed</h2>
       <p>
-        This area will display the video source used for pedestrian and vehicle counting.
+        This project explores how browser-based video analysis can be used to detect and count vehicles
+        from recorded traffic footage. The goal is to create a lightweight dashboard that can support
+        traffic monitoring, facility planning, and space usage analysis.
       </p>
 
-     <div class="video-box">
-  <video id="video" controls muted playsinline>
-    <source src="traffic-test.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+      <div class="overview-grid">
+        <div>
+          <h3>Business Problem</h3>
+          <p>
+            Traffic and space usage decisions often require manual observation. This prototype shows how
+            video data can be transformed into measurable counts for analysis and reporting.
+          </p>
+        </div>
 
-  <canvas id="canvas"></canvas>
-</div>
+        <div>
+          <h3>Technical Approach</h3>
+          <p>
+            The application uses a video source, object detection, a counting line, and live dashboard counters
+            to identify when vehicles cross a defined area.
+          </p>
+        </div>
+
+        <div>
+          <h3>Portfolio Value</h3>
+          <p>
+            This project demonstrates front-end development, JavaScript logic, browser-based analytics,
+            computer vision concepts, and dashboard presentation.
+          </p>
+        </div>
+      </div>
     </section>
 
-    <section class="card">
-      <h2>Live Dashboard</h2>
+    <!-- Dashboard Layout -->
+    <section class="dashboard-layout">
 
-      <div class="dashboard">
-  <div class="counter-box">
-    <h3>Vehicles Counted</h3>
-    <div class="counter-number" id="vehicle-count">0</div>
-  </div>
-</div>
+      <!-- Video Feed -->
+      <div class="card video-card">
+        <div class="section-heading">
+          <div>
+            <p class="section-label">Live Detection Area</p>
+            <h2>Video Feed</h2>
+          </div>
+        </div>
 
-   <section class="card">
-  <h2>System Controls</h2>
-  <p>
-    The vehicle counter updates automatically when a detected vehicle crosses the red counting line from left to right.
-  </p>
+        <p>
+          The video below is used as the source for vehicle detection and counting.
+          Detected objects are displayed using visual overlays.
+        </p>
 
-  <button onclick="resetCounts()">Reset Count</button>
-</section>
+        <div class="video-box">
+          <video id="video" controls muted playsinline>
+            <source src="traffic-test.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
 
-    <section class="card">
-      <h2>System Status</h2>
-      <p>Status: <span class="status">Dashboard prototype active</span></p>
+          <canvas id="canvas"></canvas>
+        </div>
+      </div>
+
+      <!-- Side Panel -->
+      <aside class="side-panel">
+
+        <section class="card stats-card">
+          <p class="section-label">Live Dashboard</p>
+          <h2>Counts</h2>
+
+          <div class="counter-box">
+            <h3>Vehicles Counted</h3>
+            <div class="counter-number" id="vehicle-count">0</div>
+            <small>Updates when a vehicle crosses the counting line.</small>
+          </div>
+        </section>
+
+        <section class="card controls-card">
+          <p class="section-label">System Controls</p>
+          <h2>Controls</h2>
+
+          <p>
+            The counter updates automatically when a detected vehicle crosses the red counting line
+            from left to right.
+          </p>
+
+          <button onclick="resetCounts()">Reset Count</button>
+        </section>
+
+        <section class="card status-card">
+          <p class="section-label">System Status</p>
+          <h2>Status</h2>
+
+          <div class="status-box">
+            <strong>Active</strong>
+            <span>Dashboard prototype running</span>
+          </div>
+        </section>
+
+      </aside>
+
     </section>
+
+    <!-- Methodology -->
+    <section class="card">
+      <h2>Methodology</h2>
+
+      <div class="method-grid">
+        <div>
+          <span class="step-number">01</span>
+          <h3>Input</h3>
+          <p>
+            A recorded traffic video is loaded directly in the browser.
+          </p>
+        </div>
+
+        <div>
+          <span class="step-number">02</span>
+          <h3>Detection</h3>
+          <p>
+            A browser-based object detection model identifies vehicles in the video frame.
+          </p>
+        </div>
+
+        <div>
+          <span class="step-number">03</span>
+          <h3>Counting Logic</h3>
+          <p>
+            Vehicles are counted when they cross a defined line in the selected direction.
+          </p>
+        </div>
+
+        <div>
+          <span class="step-number">04</span>
+          <h3>Dashboard</h3>
+          <p>
+            The live count is displayed in a simple dashboard for quick interpretation.
+          </p>
+        </div>
+      </div>
+    </section>
+
   </main>
 
- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
-<script src="script.js"></script>
+  <!-- Footer -->
+  <footer>
+    <p>Built with HTML, CSS, JavaScript, TensorFlow.js, COCO-SSD, and GitHub Pages.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+  <script src="script.js"></script>
+
 </body>
 </html>
