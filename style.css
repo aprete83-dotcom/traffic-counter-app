@@ -32,6 +32,8 @@ body {
   margin: 0 auto;
 }
 
+/* Header */
+
 .project-header {
   padding: 64px 0 32px;
   text-align: center;
@@ -69,6 +71,8 @@ body {
   margin-top: 28px;
 }
 
+/* Main layout */
+
 main {
   padding: 24px 0 64px;
 }
@@ -96,12 +100,17 @@ main {
   color: var(--muted);
 }
 
+/* Overview and methodology */
+
 .overview-grid,
 .method-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 18px;
   margin-top: 24px;
+}
+
+.overview-grid {
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .method-grid {
@@ -124,6 +133,8 @@ main {
   margin-bottom: 10px;
 }
 
+/* Dashboard layout */
+
 .dashboard-layout {
   display: grid;
   grid-template-columns: 1.6fr 0.9fr;
@@ -138,6 +149,11 @@ main {
   margin-bottom: 0;
 }
 
+.side-panel {
+  display: grid;
+  gap: 24px;
+}
+
 .section-heading {
   display: flex;
   justify-content: space-between;
@@ -145,34 +161,39 @@ main {
   align-items: start;
 }
 
+/* Video and canvas alignment */
+
 .video-box {
   position: relative;
   width: 100%;
+  aspect-ratio: 16 / 9;
   border-radius: 20px;
   overflow: hidden;
   background: #000;
   border: 1px solid var(--border);
-  min-height: 360px;
   margin-top: 18px;
 }
 
-video,
-canvas {
-  width: 100%;
-  display: block;
-  border-radius: 20px;
-}
-
-canvas {
+.video-box video,
+.video-box canvas {
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
 }
 
-.side-panel {
-  display: grid;
-  gap: 24px;
+.video-box video {
+  object-fit: contain;
+  background: #000;
 }
+
+.video-box canvas {
+  pointer-events: none;
+}
+
+/* Counter */
 
 .counter-box {
   padding: 24px;
@@ -202,6 +223,8 @@ canvas {
   color: var(--muted-dark);
 }
 
+/* Status */
+
 .status-box {
   display: grid;
   gap: 4px;
@@ -218,6 +241,8 @@ canvas {
 .status-box span {
   color: var(--muted);
 }
+
+/* Buttons */
 
 button,
 .btn {
@@ -253,6 +278,8 @@ button:hover,
   color: #020617;
 }
 
+/* Footer */
+
 footer {
   border-top: 1px solid var(--border);
   padding: 24px 20px;
@@ -264,6 +291,8 @@ footer p {
   margin: 0;
 }
 
+/* Responsive */
+
 @media (max-width: 950px) {
   .dashboard-layout,
   .overview-grid,
@@ -271,11 +300,35 @@ footer p {
     grid-template-columns: 1fr;
   }
 
-  .video-box {
-    min-height: 260px;
+  .project-header {
+    padding-top: 44px;
+  }
+
+  .card {
+    padding: 22px;
   }
 
   .counter-number {
     font-size: 2.6rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .container {
+    width: min(100% - 24px, 1180px);
+  }
+
+  .header-actions {
+    flex-direction: column;
+  }
+
+  button,
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .project-intro {
+    font-size: 1rem;
   }
 }
